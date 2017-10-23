@@ -15,6 +15,12 @@
  * after the delete operation.
  * 
  * Be careful with corner cases!
+ * 
+ * Also, if the element is the last, then we have no 
+ * way to solve the problem. We would have no data to 
+ * copy, thus we cannot make the previous element point 
+ * correctly to the next node.
+ *   
  */
 
 typedef struct node {
@@ -31,9 +37,7 @@ void delete_node(list_node *ln){
         next = ln->next;
     
     if(next == NULL){
-        free(ln);
-        ln = NULL;
-        return;
+        /* Last element. Problem! No data to copy */
     }
 
     ln->c = next->c;
